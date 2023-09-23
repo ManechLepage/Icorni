@@ -8,6 +8,7 @@ public class Weapon : ItemObject
     [Space]
     [Header("Weapon Stats")]
     public int damageDealt;
+    public DamageType damageType;
 
     public void Awake()
     {

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5d58ba4e443d148b292b9825623c3c, type: 3}
-  m_Name: WoodenSword
+  m_Script: {fileID: 11500000, guid: 263e631ed8cc1eb4a94b3e2ae5151937, type: 3}
+  m_Name: MoltenNut
   m_EditorClassIdentifier: 
-  uiDisplay: {fileID: 3076563185971201969, guid: 53a8120716581ce42a6244ecfc7e3c89, type: 3}
-  type: 0
-  ItemRarity: 0
-  isStackable: 0
+  uiDisplay: {fileID: 8334651344603559088, guid: 19eddc46ac4cf1e4998c0ca09176bde5, type: 3}
+  type: 1
+  ItemRarity: 1
+  isStackable: 1
   buffs: []
   resistances: []
-  description: Basic sword that every good squirrel have.
-  damageDealt: 5
-  damageType: 0
+  description: '-15% fire damage.
+
+    Stackable'

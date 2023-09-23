@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        inventory.container.Clear();
+        // Clear inventory on application quit
+        // inventory.container.Clear();
     }
 }
