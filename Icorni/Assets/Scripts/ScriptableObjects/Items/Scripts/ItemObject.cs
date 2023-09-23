@@ -35,25 +35,40 @@ public enum DamageType
 
 public abstract class ItemObject : ScriptableObject
 {
+    [Header("Item Stats")]
+    public int ID;
     public Sprite uiDisplay;
     public ItemType type;
+    public string itemName;
     
-    [Header("Item")]
-    public ItemRarity ItemRarity;
+    [Header("Buffs & Resistances")]
+    public ItemBuff[] buffs;
+    public ResistanceBuff[] resistance;
     public bool isStackable;
-
-    [Space]
-    [Header("Buffs & Resistance")]
-    public List<ItemBuff> buffs = new List<ItemBuff>();
-    public List<Resistance> resistances = new List<Resistance>();
-
-
     
     [Space]
     [Header("Description")]
     [TextArea(15, 20)]
     public string description;
 }
+
+[System.Serializable]
+public class Item
+{
+    public string Name;
+    public int ID;
+    public Item()
+    {
+        Name = "";
+        ID = -1;
+    }
+    public Item(ItemObject item)
+    {
+        Name = item.name;
+        ID = item.ID;
+    }
+}
+
 
 [System.Serializable]
 public class ItemBuff
@@ -63,7 +78,7 @@ public class ItemBuff
 }
 
 [System.Serializable]
-public class Resistance
+public class ResistanceBuff
 {
     public DamageType damageType;
     public int value;

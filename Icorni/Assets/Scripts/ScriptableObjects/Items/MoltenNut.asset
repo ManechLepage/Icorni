@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263e631ed8cc1eb4a94b3e2ae5151937, type: 3}
   m_Name: MoltenNut
   m_EditorClassIdentifier: 
+  ID: 0
   uiDisplay: {fileID: 8334651344603559088, guid: 19eddc46ac4cf1e4998c0ca09176bde5, type: 3}
   type: 1
   ItemRarity: 1
-  isStackable: 1
   buffs: []
-  resistances: []
+  resistance: []
+  isStackable: 1
   description: '-15% fire damage.
 
     Stackable'

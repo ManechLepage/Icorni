@@ -1,19 +1,22 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public MouseItem mouseItem = new MouseItem();
     public InventoryObject inventory;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Item")
         {
-            Item item = other.GetComponent<Item>();
+            GroundItem item = other.GetComponent<GroundItem>();
             if (item.isGrabable)
             {
-                inventory.AddItem(item.item, 1);
+                Item _item = new Item(item.item);
+                inventory.AddItem(_item, 1);
                 Destroy(other.gameObject);
             }
         }
