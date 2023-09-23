@@ -40,16 +40,31 @@ public abstract class ItemObject : ScriptableObject
     public Sprite uiDisplay;
     public ItemType type;
     public string itemName;
+    public bool isStackable;
     
     [Header("Buffs & Resistances")]
     public ItemBuff[] buffs;
     public ResistanceBuff[] resistance;
-    public bool isStackable;
     
     [Space]
     [Header("Description")]
     [TextArea(15, 20)]
     public string description;
+    public List<RichText> richText = new List<RichText>();
+}
+
+[System.Serializable]
+public class RichText
+{
+    public string text;
+    public Colors color;
+    public bool isBold;
+    RichText(string _text, Colors _color, bool _isBold)
+    {
+        text = _text;
+        color = _color;
+        isBold = _isBold;
+    }
 }
 
 [System.Serializable]

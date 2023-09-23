@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: WoodenSword
   m_EditorClassIdentifier: 
   ID: 1
-  uiDisplay: {fileID: 3076563185971201969, guid: 53a8120716581ce42a6244ecfc7e3c89, type: 3}
+  uiDisplay: {fileID: 1963582309730611492, guid: d9367a5afd4ac3148af3ffb02859336d, type: 3}
   type: 0
   itemName: Wooden Sword
+  isStackable: 0
   buffs: []
   resistance: []
-  isStackable: 0
   description: Basic sword that every good squirrel have.
+  richText: []
   damageDealt: 5
   damageType: 0
