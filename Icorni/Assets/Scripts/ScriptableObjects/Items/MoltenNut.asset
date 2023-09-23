@@ -15,10 +15,12 @@ MonoBehaviour:
   ID: 0
   uiDisplay: {fileID: 8334651344603559088, guid: 19eddc46ac4cf1e4998c0ca09176bde5, type: 3}
   type: 1
-  ItemRarity: 1
+  itemName: Molten Nut
   buffs: []
-  resistance: []
+  resistance:
+  - damageType: 2
+    value: 15
   isStackable: 1
-  description: '-15% fire damage.
+  description: '-15% fire damage taken.
 
     Stackable'

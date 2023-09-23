@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 1
   uiDisplay: {fileID: 3076563185971201969, guid: 53a8120716581ce42a6244ecfc7e3c89, type: 3}
   type: 0
-  ItemRarity: 0
+  itemName: Wooden Sword
   buffs: []
   resistance: []
   isStackable: 0
