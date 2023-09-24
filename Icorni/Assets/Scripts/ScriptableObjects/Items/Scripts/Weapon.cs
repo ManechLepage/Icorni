@@ -7,11 +7,17 @@ public class Weapon : ItemObject
 {
     [Space]
     [Header("Weapon Stats")]
-    public int damageDealt;
+    public int minDamageDealt;
+    public int maxDamageDealt;
     public DamageType damageType;
 
     public void Awake()
     {
         type = ItemType.Weapon;
+    }
+
+    public int inflictDamage()
+    {
+        return Random.Range(minDamageDealt, maxDamageDealt);
     }
 }

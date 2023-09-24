@@ -9,15 +9,6 @@ public enum ItemType
     Artifact
 }
 
-public enum ItemRarity
-{
-    Common,
-    Uncommon,
-    Rare,
-    Epic,
-    Legendary
-}
-
 public enum Attribute
 {
     Speed,
@@ -45,6 +36,7 @@ public abstract class ItemObject : ScriptableObject
     [Header("Buffs & Resistances")]
     public ItemBuff[] buffs;
     public ResistanceBuff[] resistance;
+    // public List<
     
     [Space]
     [Header("Description")]

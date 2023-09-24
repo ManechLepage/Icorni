@@ -7,6 +7,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public ItemDatabaseObject database;
+    public PlayerData playerData;
     public Inventory container;
 
     public void AddItem(Item _item, int _amount)
@@ -16,6 +17,7 @@ public class InventoryObject : ScriptableObject
             if (container.items[i].ID == _item.ID)
             {
                 container.items[i].AddAmount(_amount);
+                playerData.CheckEquipment();
                 return;
             }
         }
@@ -29,6 +31,7 @@ public class InventoryObject : ScriptableObject
             if (container.items[i].ID <= -1)
             {
                 container.items[i].UpdateSlot(_item.ID, _item, _amount);
+                playerData.CheckEquipment();
                 return container.items[i];
             }
         }
@@ -42,6 +45,7 @@ public class InventoryObject : ScriptableObject
         InventorySlot temp = new InventorySlot(item2.ID, item2.item, item2.amount);
         item2.UpdateSlot(item1.ID, item1.item, item1.amount);
         item1.UpdateSlot(temp.ID, temp.item, temp.amount);
+        playerData.CheckEquipment();
     }
 }
 
