@@ -54,6 +54,26 @@ public abstract class UserInterface : MonoBehaviour
         }
     }
 
+    public bool canWeapon()
+    {
+
+        for (int i = 0; i < inventory.container.items.Length; i++)
+        {
+            if (inventory.container.items[i].item.ID >= 0)
+            {
+                if (inventory.database.GetItem[inventory.container.items[i].item.ID] is Weapon)
+                {
+                    Debug.Log("You already have a weapon");
+                    return false;
+                }
+            }
+            
+        }
+
+        Debug.Log("Weapon equiped");
+        return true;
+    }
+
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action) 
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
@@ -99,15 +119,34 @@ public abstract class UserInterface : MonoBehaviour
     {
         if (player.mouseItem.hoverObj)
         {
-            inventory.MoveItem(itemsDisplayed[obj], player.mouseItem.hoverItem.parent.itemsDisplayed[player.mouseItem.hoverObj]);
+            if (player.mouseItem.hoverItem.parent is EquipmentInterface)
+            {
+                Debug.Log("1");
+                if (itemsDisplayed[obj].item.ID >= 0)
+                {
+                    Debug.Log("2");
+                    if (inventory.database.GetItem[itemsDisplayed[obj].item.ID] is Weapon)
+                    {
+                        Debug.Log("3");
+                        if (player.mouseItem.hoverItem.parent.canWeapon())
+                        {
+                            Debug.Log("4");
+                            MoveItem(obj);
+                        }
+                    }
+                }
+            }
+            MoveItem(obj);
         }
-        else
-        {
 
-        }
         Destroy(player.mouseItem.obj);
         player.mouseItem.item = null;
         player.mouseItem.isHoldingObj = false;
+    }
+
+    public void MoveItem(GameObject obj)
+    {
+        inventory.MoveItem(itemsDisplayed[obj], player.mouseItem.hoverItem.parent.itemsDisplayed[player.mouseItem.hoverObj]);
     }
 
     public void OnDrag(GameObject obj)

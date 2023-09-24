@@ -12,7 +12,7 @@ public enum ItemType
 public enum Attribute
 {
     Speed,
-    Health,
+    MaxHealth,
     Defense
 }
 

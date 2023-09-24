@@ -21,9 +21,9 @@ MonoBehaviour:
   resistance:
   - damageType: 2
     value: 15
-  description: '-15% fire damage taken.
+  description: '-15% *fire* damage taken.
 
-    Stackable (+5% per stack)'
+    *Stackable (+5% per stack)*'
   richText:
   - text: fire
     color: 2

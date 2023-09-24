@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,37 +15,73 @@ public class PlayerData : ScriptableObject
     [Space]
     [Header("Player Damage Stats")]
     public Weapon weapon;
-    public List<ItemBuff> buffs = new List<ItemBuff>();
 
     [Space]
     [Header("Player Defense Stats")]
     public int defensePercentage;
-    public List<ResistanceBuff> resistanceBonus = new List<ResistanceBuff>();
+    public List<ResistanceBuff> resistanceBonus;
 
     [Space]
     [Header("Equipment Inventory")] 
     public InventoryObject equipmentInventory;
-    public InventorySlot[] affectedSlots;
+
+    private float defaultSpeed;
+    private int defaultHealth;
+    private int defaultMaxHealth;
     public void Awake()
     {
-        affectedSlots = new InventorySlot[equipmentInventory.container.items.Length];
+        resistanceBonus = new List<ResistanceBuff>();
+
+        defaultSpeed = speed;
+        defaultHealth = health;
+        defaultMaxHealth = maxHealth;
     }
 
     public void CheckEquipment()
     {
-        for (int i = 0; i < affectedSlots.Length; i++)
+        ResetStats();
+
+        for (int i = 0; i < equipmentInventory.container.items.Length; i++)
         {
-            if (equipmentInventory.container.items[i].item != null)
+            if (equipmentInventory.container.items[i].item.ID >= 0)
             {
-                if (affectedSlots[i].item == null)
+                ItemBuff[] buffs = equipmentInventory.database.GetItem[equipmentInventory.container.items[i].item.ID].buffs;
+
+                if (buffs.Length >= 0)
                 {
-                    affectedSlots[i].item = equipmentInventory.container.items[i].item;
+                    for (int j = 0; j < buffs.Length; j++)
+                    {
+                        if (buffs[j].attribute == Attribute.Speed)
+                        {
+                            speed += buffs[j].value;
+                        }
+                        else if (buffs[j].attribute == Attribute.Defense)
+                        {
+                            defensePercentage += buffs[j].value;
+                        }
+                        else if (buffs[j].attribute == Attribute.MaxHealth)
+                        {
+                            maxHealth += buffs[j].value;
+                        }
+                    }
                 }
-                if (equipmentInventory.container.items[i].item.ID == affectedSlots[i].item.ID)
+
+                ResistanceBuff[] itemResistanceBonus = equipmentInventory.database.GetItem[equipmentInventory.container.items[i].item.ID].resistance;
+                for (int j = 0; j < itemResistanceBonus.Length; j++)
                 {
-                    affectedSlots[i].amount = equipmentInventory.container.items[i].amount;
+                    resistanceBonus.Add(itemResistanceBonus[j]);
                 }
-            }
+            }  
         }
+    }
+
+    public void ResetStats()
+    {
+        speed = defaultSpeed;
+        health = defaultHealth;
+        maxHealth = defaultMaxHealth;
+        defensePercentage = 0;
+
+        resistanceBonus.Clear();
     }
 }
