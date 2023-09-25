@@ -14,7 +14,7 @@ public class PlayerData : ScriptableObject
 
     [Space]
     [Header("Player Damage Stats")]
-    public Weapon weapon;
+    public ItemObject weapon;
 
     [Space]
     [Header("Player Defense Stats")]
@@ -40,6 +40,7 @@ public class PlayerData : ScriptableObject
     public void CheckEquipment()
     {
         ResetStats();
+        bool isWeapon = false;
 
         for (int i = 0; i < equipmentInventory.container.items.Length; i++)
         {
@@ -71,7 +72,21 @@ public class PlayerData : ScriptableObject
                 {
                     resistanceBonus.Add(itemResistanceBonus[j]);
                 }
-            }  
+            }
+            
+            if (equipmentInventory.container.items[i].item.ID >= 0)
+            {
+                if (equipmentInventory.database.GetItem[equipmentInventory.container.items[i].item.ID] is Weapon)
+                {
+                    weapon = equipmentInventory.database.GetItem[equipmentInventory.container.items[i].item.ID];
+                    isWeapon = true;
+                }
+            }
+        }
+
+        if (!isWeapon)
+        {
+            weapon = null;
         }
     }
 

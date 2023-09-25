@@ -119,18 +119,14 @@ public abstract class UserInterface : MonoBehaviour
     {
         if (player.mouseItem.hoverObj)
         {
-            if (player.mouseItem.hoverItem.parent is EquipmentInterface)
+            if (player.mouseItem.hoverItem.parent is EquipmentInterface || itemsDisplayed[obj].parent is not EquipmentInterface)
             {
-                Debug.Log("1");
                 if (itemsDisplayed[obj].item.ID >= 0)
                 {
-                    Debug.Log("2");
                     if (inventory.database.GetItem[itemsDisplayed[obj].item.ID] is Weapon)
                     {
-                        Debug.Log("3");
-                        if (player.mouseItem.hoverItem.parent.canWeapon())
+                        if (inventory.playerData.weapon != null && itemsDisplayed[obj].parent is not EquipmentInterface)
                         {
-                            Debug.Log("4");
                             MoveItem(obj);
                         }
                     }
